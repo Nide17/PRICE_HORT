@@ -1,0 +1,7 @@
+node_modules/*
+bootstrap_4.3.1_dist/*
+dist/*
+images/*
+backups/*
+uploads/*
+
