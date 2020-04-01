@@ -92,7 +92,7 @@ include('includes/head.php');
         <script>
             jQuery("#allPosts").on('click', function(e) {
                 e.preventDefault();
-                jQuery("#posts-content").html('loading...');
+                jQuery("#posts-content").html('<b style="color: green;">Loading...<b>');
                 jQuery(this).addClass('danger');
                 jQuery("#posts-content").load("allposts.php");
                 jQuery("#allPosts").hide();

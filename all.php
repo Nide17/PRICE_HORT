@@ -68,7 +68,7 @@ include('includes/head.php');
                 <?php } ?>
             </div>
         </div>
-<br><br>
+        <br><br>
         <h3 style="text-align: center;">HORTICULTURE DATABASE</h3>
         <!--SEARCH-->
 
@@ -157,14 +157,14 @@ include('includes/head.php');
             }
         } ?>
 
-<div id="myTable" class="row">
+        <div id="myTable" class="row">
             <?php
             //The table will be loaded here
             ?>
-</div>
+        </div>
 
-<!--Loading the first time table-->
-<script type="text/javascript">
+        <!--Loading the first time table-->
+        <script type="text/javascript">
             jQuery("#myTable").load("table.php?page=1");
         </script>
 
@@ -185,14 +185,14 @@ include('includes/head.php');
         <script>
             jQuery("#pagination li").on('click', function(e) {
                 e.preventDefault();
-                jQuery("#myTable").html('loading...');
+                jQuery("#myTable").html('<b style="color: green;">Loading...<b>');
                 jQuery("#pagination li").removeClass('active');
                 jQuery(this).addClass('active');
                 var pageNum = this.id;
                 jQuery("#myTable").load("table.php?page=" + pageNum);
             });
         </script>
-        
+
         <?php
         include('includes/footer.php');
         ?>
