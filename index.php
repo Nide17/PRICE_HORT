@@ -1,6 +1,5 @@
 <?php
 include('server.php');
-include('includes/head.php');
 
 if (isset($_SESSION['role'])) {
        header("location: homepage.php");
