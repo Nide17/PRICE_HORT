@@ -1,4 +1,6 @@
 
+Hosted at: http://pricehort.cf/
+
 This is a php application that is based on horticulture database of farmers used by NAEB/PRICE project.
 
 It is multi user with admin, manager, employee, users. every user has its own privileges and actions.
