@@ -1,5 +1,3 @@
-Link: http://pricehort.cf/
-
 Hosted at: http://pricehort.cf/
 
 This is a php application that is based on horticulture database of farmers used by NAEB/PRICE project.
