@@ -25,11 +25,11 @@ if ($_SESSION['role'] != 'Admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Multi User Login</title>
+    <title>PRICE Horticulture App</title>
 
     <link rel="stylesheet" type="text/css" href="../bootstrap_4.3.1_dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../bootstrap_4.3.1_dist/css/style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ICO" />
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
     <link rel="stylesheet" href="../bootstrap_4.3.1_dist/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -94,7 +94,7 @@ if ($_SESSION['role'] != 'Admin') {
             </div>
 
             <div class="col-sm-2">
-                <a href="logout.php"><button style="float:right;" type="button" class="btn btn-outline-danger">Logout</button></a>
+                <a href="../logout.php"><button style="float:right;" type="button" class="btn btn-outline-danger">Logout</button></a>
             </div>
         </div>
         <!-- end jumbotron -->
@@ -321,7 +321,7 @@ if ($_SESSION['role'] != 'Admin') {
                     if ($prov != "" && $dist != ""  && $secs != "" && $cels != "" && $vils != "") {
 
                         $fetchResult = $conn->query("SELECT * FROM applicant
-                    LEFT JOIN businessCategory ON applicant.bCatId = businessCategory.bCatId
+                    LEFT JOIN businesscategory ON applicant.bCatId = businesscategory.bCatId
                     LEFT JOIN applicantcategory ON applicant.appCatId = applicantcategory.appCatId
                     LEFT JOIN serviceprovider ON applicant.spId = serviceprovider.spId  
                     WHERE bProvince='$prov' AND bDistrict='$dist' AND bSector='$secs' AND bCell='$cels' AND bVillage='$vils'");
@@ -335,7 +335,7 @@ if ($_SESSION['role'] != 'Admin') {
                             include('../includes/messages.php'); ?>
 
                             <div class="table-responsive">
-                                <table class="table" id="locationTable">
+                                <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
                                             <th>FORM CODE</th>
@@ -425,7 +425,7 @@ if ($_SESSION['role'] != 'Admin') {
                     elseif ($prov != "" && $dist != ""  && $secs != "" && $cels != "" && empty($vils)) {
 
                         $fetchResult = $conn->query("SELECT * FROM applicant
-                    LEFT JOIN businessCategory ON applicant.bCatId = businessCategory.bCatId
+                    LEFT JOIN businesscategory ON applicant.bCatId = businesscategory.bCatId
                     LEFT JOIN applicantcategory ON applicant.appCatId = applicantcategory.appCatId
                     LEFT JOIN serviceprovider ON applicant.spId = serviceprovider.spId  
                     WHERE bProvince='$prov' AND bDistrict='$dist' AND bSector='$secs' AND bCell='$cels'");
@@ -440,7 +440,7 @@ if ($_SESSION['role'] != 'Admin') {
                             include('../includes/messages.php'); ?>
 
                             <div class="table-responsive">
-                                <table class="table" id="locationTable">
+                                <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
                                             <th>FORM CODE</th>
@@ -528,7 +528,7 @@ if ($_SESSION['role'] != 'Admin') {
                     } elseif ($prov != "" && $dist != ""  && $secs != "" && empty($cels) && empty($vils)) {
 
                         $fetchResult = $conn->query("SELECT * FROM applicant
-                    LEFT JOIN businessCategory ON applicant.bCatId = businessCategory.bCatId 
+                    LEFT JOIN businesscategory ON applicant.bCatId = businesscategory.bCatId 
                     LEFT JOIN applicantcategory ON applicant.appCatId = applicantcategory.appCatId
                     LEFT JOIN serviceprovider ON applicant.spId = serviceprovider.spId 
                     WHERE bProvince='$prov' AND bDistrict='$dist' AND bSector='$secs'");
@@ -543,7 +543,7 @@ if ($_SESSION['role'] != 'Admin') {
                             include('../includes/messages.php'); ?>
 
                             <div class="table-responsive">
-                                <table class="table" id="locationTable">
+                                <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
                                             <th>FORM CODE</th>
@@ -631,7 +631,7 @@ if ($_SESSION['role'] != 'Admin') {
                     } elseif ($prov != "" && $dist != ""  && empty($secs) && empty($cels) && empty($vils)) {
 
                         $fetchResult = $conn->query("SELECT * FROM applicant
-                    LEFT JOIN businessCategory ON applicant.bCatId = businessCategory.bCatId
+                    LEFT JOIN businesscategory ON applicant.bCatId = businesscategory.bCatId
                     LEFT JOIN applicantcategory ON applicant.appCatId = applicantcategory.appCatId 
                     LEFT JOIN serviceprovider ON applicant.spId = serviceprovider.spId 
                     WHERE bProvince='$prov' AND bDistrict='$dist'");
@@ -646,7 +646,7 @@ if ($_SESSION['role'] != 'Admin') {
                             include('../includes/messages.php'); ?>
 
                             <div class="table-responsive">
-                                <table class="table" id="locationTable">
+                                <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
                                             <th>FORM CODE</th>
@@ -734,7 +734,7 @@ if ($_SESSION['role'] != 'Admin') {
                     } elseif ($prov != "" && empty($dist)  && empty($secs) && empty($cels) && empty($vils)) {
 
                         $fetchResult = $conn->query("SELECT * FROM applicant
-                    LEFT JOIN businessCategory ON applicant.bCatId = businessCategory.bCatId 
+                    LEFT JOIN businesscategory ON applicant.bCatId = businesscategory.bCatId 
                     LEFT JOIN applicantcategory ON applicant.appCatId = applicantcategory.appCatId
                     LEFT JOIN serviceprovider ON applicant.spId = serviceprovider.spId 
                     WHERE bProvince='$prov'");
@@ -749,7 +749,7 @@ if ($_SESSION['role'] != 'Admin') {
                             include('../includes/messages.php'); ?>
 
                             <div class="table-responsive">
-                                <table class="table" id="locationTable">
+                                <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
                                             <th>FORM CODE</th>

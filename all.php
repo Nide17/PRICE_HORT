@@ -19,6 +19,16 @@ if ($_SESSION['role'] != 'Admin') {
     }
 }
 
+//for total count of data
+$countSql = "SELECT COUNT(appNo) FROM applicant";
+$tot_result = $conn->query($countSql);
+
+$limit = 249;
+
+$row = $tot_result->fetch_row();
+$total_records = $row[0];
+$total_pages = ceil($total_records / $limit);
+
 include('includes/head.php');
 ?>
 
@@ -58,7 +68,7 @@ include('includes/head.php');
                 <?php } ?>
             </div>
         </div>
-
+<br><br>
         <h3 style="text-align: center;">HORTICULTURE DATABASE</h3>
         <!--SEARCH-->
 
@@ -71,7 +81,7 @@ include('includes/head.php');
 
             // QUERY TO SELECT DATA FROM THE DB
             $resultKey = $conn->query("SELECT * FROM applicant
-                    LEFT JOIN businessCategory ON applicant.bCatId = businessCategory.bCatId
+                    LEFT JOIN businesscategory ON applicant.bCatId = businesscategory.bCatId
                     LEFT JOIN applicantcategory ON applicant.appCatId = applicantcategory.appCatId
                     LEFT JOIN serviceprovider ON applicant.spId = serviceprovider.spId 
                     WHERE appName LIKE '%$searchKey%' OR represName LIKE '%$searchKey%' 
@@ -87,7 +97,7 @@ include('includes/head.php');
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-sm w-auto">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>FORM CODE</th>
@@ -147,60 +157,42 @@ include('includes/head.php');
             }
         } ?>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <!--displaying 50 database data-->
+<div id="myTable" class="row">
+            <?php
+            //The table will be loaded here
+            ?>
+</div>
 
-                <div class="table-responsive">
-                    <table id="tableData" class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>FORM CODE</th>
-                                <th>NAME</th>
-                                <th>APPLICANT CATEGORY</th>
-                                <th>BUSINESS CATEGORY</th>
-                                <th>ID NUMBER</th>
-                                <th>PHONE</th>
-                                <th>COMMODITY</th>
-                                <th>COST</th>
-                                <th>MARKS</th>
-                                <th>SERVICE PROVIDER</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+<!--Loading the first time table-->
+<script type="text/javascript">
+            jQuery("#myTable").load("table.php?page=1");
+        </script>
 
-                            if ($result->num_rows > 0) {
-                                //output data 50 rows (query from dbconnect.php)
-                                while ($row = $result->fetch_assoc()) { ?>
+        <!--List of pages number-->
+        <ul class='pagination' id="pagination">
+            <?php
+            if (!empty($total_pages)) : for ($i = 1; $i <= $total_pages; $i++) :
+                    if ($i == 1) : ?>
+                        <li class='page-item active' id="<?php echo $i; ?>"><a href='table.php?page=<?php echo $i; ?>' class="page-link"><?php echo $i; ?></a></li>
+                    <?php else : ?>
+                        <li id="<?php echo $i; ?>" class="page-item"><a href='table.php?page=<?php echo $i; ?>' class="page-link"><?php echo $i; ?></a></li>
+                    <?php endif; ?>
+            <?php endfor;
+            endif; ?>
+        </ul>
 
-                                    <tr>
-                                        <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $row['formCode']; ?> </strong></td>
-                                        <td> <?php echo $row['appName']; ?> </td>
-                                        <td> <?php echo $row['appCatName']; ?> </td>
-                                        <td> <?php echo $row['bCatName']; ?> </td>
-                                        <td> <?php echo $row['idNbr']; ?> </td>
-                                        <td> <?php echo $row['phone']; ?> </td>
-                                        <td> <?php echo $row['crop1']; ?> </td>
-                                        <td> <?php echo number_format($row['totalCost']); ?> </td>
-                                        <?php
-                                        if ($row['marks'] < 55) {
-                                            echo '<td><b style="color:red;">' . $row['marks'] . '</b></td><td></td>';
-                                        } else {
-                                            echo '<td><b style="color:green;">' . $row['marks'] . '</b></td>';
-                                        ?>
-                                            <td> <strong><?php echo $row['spName'];
-                                                        } ?> </strong></td>
-                                    </tr>
-                            <?php }
-                            }
-                            ?>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <!--Loading the specific table of clicked list number-->
+        <script>
+            jQuery("#pagination li").on('click', function(e) {
+                e.preventDefault();
+                jQuery("#myTable").html('loading...');
+                jQuery("#pagination li").removeClass('active');
+                jQuery(this).addClass('active');
+                var pageNum = this.id;
+                jQuery("#myTable").load("table.php?page=" + pageNum);
+            });
+        </script>
+        
         <?php
         include('includes/footer.php');
         ?>

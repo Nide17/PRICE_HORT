@@ -111,19 +111,26 @@ if (isset($_GET['del'])) {
 }
 
 
-// RETRIEVE DATA FROM DB (admin.php)
+// RETRIEVE 10 DATA FROM DB (admin.php)
 $sqlRetrieve = "SELECT * FROM applicant
-LEFT JOIN businessCategory ON applicant.bCatId = businessCategory.bCatId
+LEFT JOIN businesscategory ON applicant.bCatId = businesscategory.bCatId
 LEFT JOIN applicantcategory ON applicant.appCatId = applicantcategory.appCatId
 LEFT JOIN serviceprovider ON applicant.spId = serviceprovider.spId
-ORDER BY appNo DESC LIMIT 50;";
+ORDER BY appNo DESC LIMIT 10;";
 $result = $conn->query($sqlRetrieve);
 
+
+// RETRIEVE 10 NOTIFIED APPLICANTS BY HIGHEST(ADMIN)
+$sqlRetrieveNotified10 = "SELECT * FROM notified
+                    LEFT JOIN applicantcategory ON notified.appCatId = applicantcategory.appCatId
+                    LEFT JOIN businesscategory ON notified.bCatId = businesscategory.bCatId 
+                    ORDER BY granted DESC LIMIT 10;";
+$resultNotified10 = $conn->query($sqlRetrieveNotified10);
 
 // RETRIEVE NOTIFIED APPLICANTS (notified.php)
 $sqlRetrieveNotified = "SELECT * FROM notified
                     LEFT JOIN applicantcategory ON notified.appCatId = applicantcategory.appCatId
-                    LEFT JOIN businessCategory ON notified.bCatId = businessCategory.bCatId 
+                    LEFT JOIN businesscategory ON notified.bCatId = businesscategory.bCatId 
                     ORDER BY NotID ;";
 $resultNotified = $conn->query($sqlRetrieveNotified);
 

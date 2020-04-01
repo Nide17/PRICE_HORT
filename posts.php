@@ -54,12 +54,12 @@ include('includes/head.php');
         include('includes/messages.php');
         ?>
 
-        <main class="row mt-4">
+        <main id="posts-content" class="row mt-4">
             <section class="col-sm-10 offset-sm-1 list-group">
 
                 <?php
                 // RETRIEVE DATA FROM posts
-                $sqlRetrievePosts = "SELECT * FROM posts ORDER BY postTime DESC LIMIT 10;";
+                $sqlRetrievePosts = "SELECT * FROM posts ORDER BY postTime DESC LIMIT 8;";
                 $result = $conn->query($sqlRetrievePosts);
 
                 if ($result->num_rows > 0) {
@@ -87,6 +87,17 @@ include('includes/head.php');
                 ?>
             </section>
         </main>
+
+        <button id="allPosts" type="button" class="btn btn-primary btn-sm">All posts</button>
+        <script>
+            jQuery("#allPosts").on('click', function(e) {
+                e.preventDefault();
+                jQuery("#posts-content").html('loading...');
+                jQuery(this).addClass('danger');
+                jQuery("#posts-content").load("allposts.php");
+                jQuery("#allPosts").hide();
+            });
+        </script>
         <?php
         include('includes/footer.php');
         ?>

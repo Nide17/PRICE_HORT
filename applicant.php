@@ -24,7 +24,7 @@ if (isset($_GET['edit'])) {
     $edit_state = true;
 
     $sqlEdit = "SELECT * FROM applicant
-    LEFT JOIN businessCategory ON applicant.bCatId = businessCategory.bCatId
+    LEFT JOIN businesscategory ON applicant.bCatId = businesscategory.bCatId
     LEFT JOIN applicantcategory ON applicant.appCatId = applicantcategory.appCatId
     LEFT JOIN serviceprovider ON applicant.spId = serviceprovider.spId
     WHERE appNo=$id;";

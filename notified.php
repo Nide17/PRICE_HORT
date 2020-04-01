@@ -66,7 +66,7 @@ require_once('includes/head.php');
             // QUERY TO SELECT NOTIFIED FROM THE DB
             $resultKey = $conn->query("SELECT * FROM notified
                     LEFT JOIN applicantcategory ON notified.appCatId = applicantcategory.appCatId
-                    LEFT JOIN businessCategory ON notified.bCatId = businessCategory.bCatId 
+                    LEFT JOIN businesscategory ON notified.bCatId = businesscategory.bCatId 
                     WHERE Nname LIKE '%$searchKey%' OR pfi LIKE '%$searchKey%' 
                     OR commodity LIKE '%$searchKey%' OR phone LIKE '%$searchKey%' ");
 
@@ -80,7 +80,7 @@ require_once('includes/head.php');
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-sm w-auto">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>NO</th>
@@ -141,7 +141,7 @@ require_once('includes/head.php');
                     <!--displaying 50 database data-->
 
                     <div class="table-responsive">
-                        <table id="tableData" class="table">
+                        <table id="tableData" class="table table-sm w-auto">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>NO</th>
