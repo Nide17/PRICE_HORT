@@ -4,7 +4,8 @@ include('server.php');
 if (isset($_SESSION['role'])) {
        header("location: homepage.php");
    }
-
+   require_once('includes/head.php');
+   
 ?>
 
 <body style="background-color: rgb(165, 176, 189);">
