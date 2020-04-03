@@ -13,12 +13,9 @@
     <div class="col-sm-2">
 
         <div class="card" style="width:100%; background-color:lightgray">
-            <a href="profileUpdate.php?edit=<?php echo $_SESSION['useridentity'] ?>" data-toggle="tooltip" title="Update your picture!"> <img class="card-img-top rounded" width="104" height="106" <?php
+            <a href="profileUpdate.php?edit=<?php echo $_SESSION['useridentity'] ?>" data-toggle="tooltip" title="Update your picture!"> <img class="card-img-top rounded"  width="104" height="106" <?php
 
-                                                                                                                                                                                                    $servername = "localhost";
-                                                                                                                                                                                                    $username = "root";
-                                                                                                                                                                                                    $password = "";
-                                                                                                                                                                                                    $dbname = "hort_db";
+                                                                                                                                                                                                    include('includes/dbvariables.php');
 
                                                                                                                                                                                                     $imgIDUser = $_SESSION['useridentity'];
 

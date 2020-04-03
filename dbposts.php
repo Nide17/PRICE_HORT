@@ -15,6 +15,8 @@ $edit_state = false;
 // if save post button is clicked (new post)! "Avoid using ' and " in the post content
 if (isset ($_POST['createpost'])) {
 
+	session_start();
+
     $pCreator = $_SESSION['role'];
     $Ptitle = $conn->real_escape_string($_POST['PTitle']);
     $pContent = $conn->real_escape_string($_POST['Content']);
