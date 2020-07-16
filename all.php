@@ -43,33 +43,33 @@ include('includes/head.php');
             include('includes/searchButton.php')
             ?>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6 top-buttons">
                 <?php if ($_SESSION['role'] == 'Admin') {  ?>
-                    <a href="admin.php"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
-                    <a href="homepage.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-                    <a href="newpost.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">Add Post</button></a>
-                    <a href="posts.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">Posts</button></a>
-                    <a href="locations/locations.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">By location</button></a>
+                    <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                    <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+                    <a href="newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
+                    <a href="posts.php"><button id="" type="button" class="btn-success btn-sm">Posts</button></a>
+                    <a href="locations/locations.php"><button id="" type="button" class="btn-success btn-sm">By location</button></a>
                     <br>
                 <?php } elseif ($_SESSION['role'] == 'Manager') { ?>
-                    <a href="admin.php"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
-                    <a href="homepage.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-                    <a href="newpost.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">Add Post</button></a>
-                    <a href="posts.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">Posts</button></a>
-                    <a href="locations/locations.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">By location</button></a>
+                    <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                    <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+                    <a href="newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
+                    <a href="posts.php"><button id="" type="button" class="btn-success btn-sm">Posts</button></a>
+                    <a href="locations/locations.php"><button id="" type="button" class="btn-success btn-sm">By location</button></a>
                     <br>
                 <?php } elseif ($_SESSION['role'] == 'Employee') { ?>
-                    <a href="homepage.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-                    <a href="posts.php"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
-                    <a href="locations/locations.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">By location</button></a>
+                    <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+                    <a href="posts.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                    <a href="locations/locations.php"><button id="" type="button" class="btn-success btn-sm">By location</button></a>
                     <br>
                 <?php } else { ?>
-                    <a href="homepage.php"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                    <a href="homepage.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
                 <?php } ?>
             </div>
         </div>
         <br><br>
-        <h3 style="text-align: center;">HORTICULTURE DATABASE</h3>
+        <h3 class="titles">HORTICULTURE DATABASE</h3>
         <!--SEARCH-->
 
         <?php
@@ -100,15 +100,15 @@ include('includes/head.php');
                             <table class="table table-sm w-auto">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>FORM CODE</th>
+                                        <th class="onSmall-hide">FORM CODE</th>
                                         <th>NAME</th>
-                                        <th>APPLICANT CATEGORY</th>
-                                        <th>BUSINESS CATEGORY</th>
+                                        <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                        <th class="onSmall-hide">BUSINESS CATEGORY</th>
                                         <th>DISTRICT</th>
-                                        <th>ID NUMBER</th>
-                                        <th>PHONE</th>
+                                        <th class="onSmall-hide">ID NUMBER</th>
+                                        <th class="onSmall-hide">PHONE</th>
                                         <th>COMMODITY</th>
-                                        <th>COST</th>
+                                        <th class="onSmall-hide">COST</th>
                                         <th>MARKS</th>
                                         <th>SERVICE PROVIDER</th>
 
@@ -121,15 +121,15 @@ include('includes/head.php');
                                     while ($rows = $resultKey->fetch_assoc()) { ?>
 
                                         <tr>
-                                            <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
+                                            <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
                                             <td> <?php echo $rows['appName']; ?> </td>
-                                            <td> <?php echo $rows['appCatName']; ?> </td>
-                                            <td> <?php echo $rows['bCatName']; ?> </td>
+                                            <td class="onSmall-hide"> <?php echo $rows['appCatName']; ?> </td>
+                                            <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
                                             <td> <?php echo $rows['bDistrict']; ?> </td>
-                                            <td> <?php echo $rows['idNbr']; ?> </td>
-                                            <td> <?php echo $rows['phone']; ?> </td>
+                                            <td class="onSmall-hide"> <?php echo $rows['idNbr']; ?> </td>
+                                            <td class="onSmall-hide"> <?php echo $rows['phone']; ?> </td>
                                             <td> <?php echo $rows['crop1']; ?> </td>
-                                            <td> <?php echo number_format($rows['totalCost']); ?> </td>
+                                            <td class="onSmall-hide"> <?php echo number_format($rows['totalCost']); ?> </td>
                                             <?php
                                             if ($rows['marks'] < 55) {
 
@@ -169,7 +169,7 @@ include('includes/head.php');
         </script>
 
         <!--List of pages number-->
-        <ul class='pagination' id="pagination">
+        <ul class="pagination" id="pagination">
             <?php
             if (!empty($total_pages)) : for ($i = 1; $i <= $total_pages; $i++) :
                     if ($i == 1) : ?>

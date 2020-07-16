@@ -28,27 +28,31 @@ include('includes/head.php');
 <body>
 
     <div class="container">
-
         <?php include('includes/jumbotron.php') ?>
 
-        <?php if ($_SESSION['role'] == 'Admin') {  ?>
-            <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
-            <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-            <a href="newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
-            <a href="notified.php"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
-            <br>
-        <?php } elseif ($_SESSION['role'] == 'Manager') { ?>
-            <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
-            <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-            <a href="newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
-            <a href="notified.php"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
-            <br>
-        <?php } else { ?>
-            <a href="notified.php"><button id="backHome" type="button" class="btn-success btn-sm">Granted</button></a>
-            <a href="all.php"><button id="" type="button" class="btn-success btn-sm">All Applicants</button></a>
-            <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-        <?php } ?>
-        <h3 style="text-align: center;">POSTS</h3>
+        <div class="row">
+            <div class="col-12 top-buttons">
+                <?php if ($_SESSION['role'] == 'Admin') {  ?>
+                    <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                    <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+                    <a href="newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
+                    <a href="notified.php"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
+                    <br>
+                <?php } elseif ($_SESSION['role'] == 'Manager') { ?>
+                    <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                    <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+                    <a href="newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
+                    <a href="notified.php"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
+                    <br>
+                <?php } else { ?>
+                    <a href="notified.php"><button id="backHome" type="button" class="btn-success btn-sm">Granted</button></a>
+                    <a href="all.php"><button id="" type="button" class="btn-success btn-sm">All Applicants</button></a>
+                    <a href="homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+                <?php } ?>
+            </div>
+        </div>
+
+        <h3 class="titles">POSTS</h3>
 
         <?php
         include('includes/messages.php');

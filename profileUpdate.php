@@ -35,7 +35,7 @@ require_once('includes/head.php');
     <div class="container">
         <?php require_once('includes/jumbotron.php') ?>
 
-        <h3 style="color: #4525ef; text-align:center">Update your profile picture</h3> <br>
+        <h3 class="titles" style="color: #4525ef;">Update your profile picture</h3> <br>
 
         <div class="row">
             <div class="col-sm-12">

@@ -26,8 +26,8 @@ require_once('includes/head.php');
         
 
         <div class="row">
-        <div class="col-sm-10">
-        <h3 style="text-align: center;">NEW POSTS</h3>
+        <div class="col-9 col-sm-10">
+        <h3 class="titles">NEW POSTS</h3>
 
             <section class="list-group">
                 <?php
@@ -57,8 +57,8 @@ require_once('includes/head.php');
             <button type="button" class="btn btn-outline-info btn-sm"><a href="posts.php">View more posts</a></button>
             
         </div>
-        <div class="col-sm-2">
-        <h3 style="text-align: center;">LINKS</h3>
+        <div class="col-3 col-sm-2 post-links">
+        <h3 class="titles">LINKS</h3>
             <a href="applicant.php"><button id="formUpdateNewAPP" type="button" class="btn btn-secondary btn-sm" style="margin-left:20px;">New Applicant</button></a>
             <br><br>
                 <a href="all.php"><button id="allApps" type="button" class="btn btn-secondary btn-sm" style="margin-left:20px;">All Applicants</button></a>
@@ -73,7 +73,7 @@ require_once('includes/head.php');
         </div>
 
         <br><br>
-        <h3 style="text-align: center;">HORTICULTURE DATABASE</h3>
+        <h3 class="titles">HORTICULTURE DATABASE</h3>
 
         <?php
         include('includes/messages.php');
@@ -89,15 +89,15 @@ require_once('includes/head.php');
             <table id="tableData" class="table datatable table-sm w-auto">
                 <thead class="thead-dark">
                     <tr>
-                        <th>FORM CODE</th>
+                        <th class="onSmall-hide">FORM CODE</th>
                         <th>NAME</th>
-                        <th>APPLICANT CATEGORY</th>
-                        <th>BUSINESS CATEGORY</th>
+                        <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                        <th class="onSmall-hide">BUSINESS CATEGORY</th>
                         <th>DISTRICT</th>
-                        <th>ID NUMBER</th>
-                        <th>PHONE</th>
+                        <th class="onSmall-hide">ID NUMBER</th>
+                        <th class="onSmall-hide">PHONE</th>
                         <th>COMMODITY</th>
-                        <th>COST</th>
+                        <th class="onSmall-hide">COST</th>
                         <th>MARKS</th>
                         <th>SERVICE PROVIDER</th>
                         <th colspan="2">ACTION</th>
@@ -113,15 +113,15 @@ require_once('includes/head.php');
                         while ($row = $result->fetch_assoc()) { ?>
 
                             <tr>
-                                <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $row['formCode']; ?> </strong></td>
+                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $row['formCode']; ?> </strong></td>
                                 <td> <?php echo $row['appName']; ?> </td>
-                                <td> <?php echo $row['appCatName']; ?> </td>
-                                <td> <?php echo $row['bCatName']; ?> </td>
+                                <td class="onSmall-hide"> <?php echo $row['appCatName']; ?> </td>
+                                <td class="onSmall-hide"> <?php echo $row['bCatName']; ?> </td>
                                 <td> <?php echo $row['bDistrict']; ?> </td>
-                                <td> <?php echo $row['idNbr']; ?> </td>
-                                <td> <?php echo $row['phone']; ?> </td>
+                                <td class="onSmall-hide"> <?php echo $row['idNbr']; ?> </td>
+                                <td class="onSmall-hide"> <?php echo $row['phone']; ?> </td>
                                 <td> <?php echo $row['crop1']; ?> </td>
-                                <td> <?php echo number_format($row['totalCost']); ?> </td>
+                                <td class="onSmall-hide"> <?php echo number_format($row['totalCost']); ?> </td>
                                 <td> <?php
                                         if ($row['marks'] < 55) {
                                             echo '<b style="color:red;">' . $row['marks'] . '</b>';
@@ -148,7 +148,7 @@ require_once('includes/head.php');
 <a href="all.php"><button id="" type="button" class="btn btn-outline-warning btn-sm btn-block" style="margin-top:0px;">Click here to view more</button></a>
 
 <br><br>
-<h3 style="text-align: center;">NOTIFIED APPLICANTS</h3>
+<h3 class="titles">NOTIFIED APPLICANTS</h3>
 
 <button id="tableHide" type="button" class="btn-warning" onclick="document.getElementById('tableData1').style.display='none'">Hide the table</button>
 <button id="tableHide" type="button" class="btn-info" onclick="document.getElementById('tableData1').style.display='block'">Show the table</button>
@@ -161,16 +161,16 @@ require_once('includes/head.php');
                         <table id="tableData1" class="table table-sm w-auto">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>NO</th>
+                                    <th class="onSmall-hide">NO</th>
                                     <th>NAME</th>
-                                    <th>APPLICANT CATEGORY</th>
-                                    <th>BUSINESS CATEGORY</th>
+                                    <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                    <th class="onSmall-hide">BUSINESS CATEGORY</th>
                                     <th>DISTRICT</th>
-                                    <th>SECTOR</th>
-                                    <th>SEX</th>
-                                    <th>PHONE</th>
+                                    <th class="onSmall-hide">SECTOR</th>
+                                    <th class="onSmall-hide">SEX</th>
+                                    <th class="onSmall-hide">PHONE</th>
                                     <th>COMMIDITY</th>
-                                    <th>LOAN</th>
+                                    <th class="onSmall-hide">LOAN</th>
                                     <th>GRANT</th>
                                     <th>FINANCIAL INSTITUTION</th>
                                 </tr>
@@ -183,16 +183,16 @@ require_once('includes/head.php');
                                 $sum_cost = 0;
                                 while ($row = $resultNotified10->fetch_assoc()) { ?>
                                     <tr>
-                                        <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $row['notID']; ?> </strong></td>
+                                        <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $row['notID']; ?> </strong></td>
                                         <td> <?php echo $row['Nname']; ?> </td>
-                                        <td> <?php echo $row['appCatName']; ?> </td>
-                                        <td> <?php echo $row['bCatName']; ?> </td>
+                                        <td class="onSmall-hide"> <?php echo $row['appCatName']; ?> </td>
+                                        <td class="onSmall-hide"> <?php echo $row['bCatName']; ?> </td>
                                         <td> <?php echo $row['district']; ?> </td>
-                                        <td> <?php echo $row['sector']; ?> </td>
-                                        <td> <?php echo $row['sex']; ?> </td>
-                                        <td> <?php echo $row['phone']; ?> </td>
+                                        <td class="onSmall-hide"> <?php echo $row['sector']; ?> </td>
+                                        <td class="onSmall-hide"> <?php echo $row['sex']; ?> </td>
+                                        <td class="onSmall-hide"> <?php echo $row['phone']; ?> </td>
                                         <td> <?php echo $row['commodity']; ?> </td>
-                                        <td> <?php echo number_format($row['loan']); ?> </td>
+                                        <td class="onSmall-hide"> <?php echo number_format($row['loan']); ?> </td>
                                         <td> <strong><?php echo number_format($row['granted']); ?> </strong></td>
                                         <td> <?php echo $row['pfi']; ?> </td>
                                     </tr>
@@ -200,7 +200,7 @@ require_once('includes/head.php');
                                     $sum_cost += $row['granted'];
                                 }
                                 ?>
-                                <tr class="text-center table-warning font-weight-bold text-info">
+                                <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                     <td colspan="10">
                                         <h6>TOTAL FOR 10 PEOPLE WITH HIGHER GRANT</h6>
                                     </td>

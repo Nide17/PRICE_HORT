@@ -38,9 +38,9 @@ if ($_SESSION['role'] != 'Admin') {
     <div class="container">
 
         <!-- jumbotron -->
-        <div class="jumbotron bg-info row" style="padding: 40px">
-
-            <div class="col-sm-6">
+        <div class="jumbotron bg-info" style="padding: 40px">
+        <div class="row jumbotron-row">
+        <div class="col-12 col-sm-12 col-lg-8">
                 <h2>Welcome <br>
                     <?php
                     if (isset($_SESSION['first'])) {
@@ -48,9 +48,8 @@ if ($_SESSION['role'] != 'Admin') {
                     }
                     ?></h2>
             </div>
-            <div class="col-sm-2">
-            </div>
-            <div class="col-sm-2">
+
+            <div class="col-6 col-sm-4 col-lg-2">
 
                 <div class="card" style="width:100%; background-color:lightgray">
                     <a href="../profileUpdate.php?edit=<?php echo $_SESSION['useridentity'] ?>" data-toggle="tooltip" title="Update your picture!"> <img class="card-img-top rounded" width="104" height="106" <?php
@@ -93,11 +92,14 @@ if ($_SESSION['role'] != 'Admin') {
 
             </div>
 
-            <div class="col-sm-2">
+            <div class="col-3 col-sm-2 col-lg-2 logout">
                 <a href="../logout.php"><button style="float:right;" type="button" class="btn btn-outline-danger">Logout</button></a>
             </div>
         </div>
+        </div>
         <!-- end jumbotron -->
+
+        <div class=" col-12 col-sm-6 top-buttons">
         <?php if ($_SESSION['role'] == 'Admin') {  ?>
             <a href="../admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
             <a href="../homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
@@ -115,9 +117,9 @@ if ($_SESSION['role'] != 'Admin') {
             <a href="../all.php"><button id="" type="button" class="btn-success btn-sm">All Applicants</button></a>
             <a href="../homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
         <?php } ?>
+        </div>
 
-        <br>
-        <h3 style="text-align: center; color:#1B4F72;">VIEW APPLICANTS BY LOCATION</h3>
+        <h3 class="titles" style="color:#1B4F72;">VIEW APPLICANTS BY LOCATION</h3>
 
         <div class="row">
 
@@ -272,7 +274,7 @@ if ($_SESSION['role'] != 'Admin') {
                         $loca = $conn->query("SELECT pname FROM provinces WHERE pid='$pro'");
                         while ($rows = $loca->fetch_assoc()) {
 
-                            echo "<br/> <br/> <b style=" . "color:#1B4F72;" . "margin-left:280px;" . "> You have selected to display info from: </b>" . $rows["pname"];
+                            echo "<br/> <br/> <b style=" . "margin-left:35%;". "> You have selected to display info from: " .$rows["pname"] ."</b>";
                             $prov = $rows["pname"];
                         }
                     }
@@ -282,7 +284,7 @@ if ($_SESSION['role'] != 'Admin') {
                         $loca = $conn->query("SELECT dname FROM districts WHERE did='$dis'");
                         while ($rows = $loca->fetch_assoc()) {
 
-                            echo ", " . $rows["dname"];
+                            echo ", <b>" . $rows["dname"] ."</b>";
                             $dist = $rows["dname"];
                         }
                     }
@@ -292,7 +294,7 @@ if ($_SESSION['role'] != 'Admin') {
                         $loca = $conn->query("SELECT sname FROM sectors WHERE sid='$sec'");
                         while ($rows = $loca->fetch_assoc()) {
 
-                            echo ", " . $rows["sname"];
+                            echo ", <b>" . $rows["sname"] ."</b>";
                             $secs = $rows["sname"];
                         }
                     }
@@ -302,7 +304,7 @@ if ($_SESSION['role'] != 'Admin') {
                         $loca = $conn->query("SELECT cname FROM cells WHERE cid='$cel'");
                         while ($rows = $loca->fetch_assoc()) {
 
-                            echo ", " . $rows["cname"];
+                            echo ", <b>" . $rows["cname"] ."</b>";
                             $cels = $rows["cname"];
                         }
                     }
@@ -312,7 +314,7 @@ if ($_SESSION['role'] != 'Admin') {
                         $loca = $conn->query("SELECT vname FROM villages WHERE vid='$vil'");
                         while ($rows = $loca->fetch_assoc()) {
 
-                            echo ", " . $rows["vname"];
+                            echo ", <b>" . $rows["vname"] ."</b>";
                             $vils = $rows["vname"];
                         }
                     }
@@ -338,12 +340,12 @@ if ($_SESSION['role'] != 'Admin') {
                                 <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
-                                            <th>FORM CODE</th>
+                                            <th class="onSmall-hide">FORM CODE</th>
                                             <th>NAME</th>
-                                            <th>APPLICANT CATEGORY</th>
-                                            <th>BUSINESS CATEGORY</th>
-                                            <th>ID NUMBER</th>
-                                            <th>PHONE</th>
+                                            <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                            <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                            <th class="onSmall-hide">ID NUMBER</th>
+                                            <th class="onSmall-hide">PHONE</th>
                                             <th>COMMODITY</th>
                                             <th>COST</th>
                                             <th>MARKS</th>
@@ -360,12 +362,12 @@ if ($_SESSION['role'] != 'Admin') {
                                         <tbody>
 
                                             <tr>
-                                                <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
+                                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
                                                 <td> <?php echo $rows['appName']; ?> </td>
-                                                <td> <?php echo $rows['appCatName']; ?> </td>
-                                                <td> <?php echo $rows['bCatName']; ?> </td>
-                                                <td> <?php echo $rows['idNbr']; ?> </td>
-                                                <td> <?php echo $rows['phone']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['appCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['idNbr']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['phone']; ?> </td>
                                                 <td> <?php echo $rows['crop1']; ?> </td>
                                                 <td> <?php echo number_format($rows['totalCost']); ?> </td>
                                                 <td> <?php
@@ -387,7 +389,7 @@ if ($_SESSION['role'] != 'Admin') {
                                         $sum_cost += $rows['totalCost'];
                                     }
                                         ?>
-                                        <tr class="text-center table-warning font-weight-bold text-info">
+                                        <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                             <td colspan="7">
                                                 <h6>TOTAL COST</h6>
                                             </td>
@@ -443,12 +445,12 @@ if ($_SESSION['role'] != 'Admin') {
                                 <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
-                                            <th>FORM CODE</th>
+                                            <th class="onSmall-hide">FORM CODE</th>
                                             <th>NAME</th>
-                                            <th>APPLICANT CATEGORY</th>
-                                            <th>BUSINESS CATEGORY</th>
-                                            <th>ID NUMBER</th>
-                                            <th>PHONE</th>
+                                            <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                            <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                            <th class="onSmall-hide">ID NUMBER</th>
+                                            <th class="onSmall-hide">PHONE</th>
                                             <th>COMMODITY</th>
                                             <th>COST</th>
                                             <th>MARKS</th>
@@ -465,12 +467,12 @@ if ($_SESSION['role'] != 'Admin') {
                                         <tbody>
 
                                             <tr>
-                                                <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
+                                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
                                                 <td> <?php echo $rows['appName']; ?> </td>
-                                                <td> <?php echo $rows['appCatName']; ?> </td>
-                                                <td> <?php echo $rows['bCatName']; ?> </td>
-                                                <td> <?php echo $rows['idNbr']; ?> </td>
-                                                <td> <?php echo $rows['phone']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['appCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['idNbr']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['phone']; ?> </td>
                                                 <td> <?php echo $rows['crop1']; ?> </td>
                                                 <td> <?php echo number_format($rows['totalCost']); ?> </td>
                                                 <td> <?php
@@ -492,7 +494,7 @@ if ($_SESSION['role'] != 'Admin') {
                                         $sum_cost += $rows['totalCost'];
                                     }
                                         ?>
-                                        <tr class="text-center table-warning font-weight-bold text-info">
+                                        <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                             <td colspan="7">
                                                 <h6>TOTAL COST</h6>
                                             </td>
@@ -546,12 +548,12 @@ if ($_SESSION['role'] != 'Admin') {
                                 <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
-                                            <th>FORM CODE</th>
+                                            <th class="onSmall-hide">FORM CODE</th>
                                             <th>NAME</th>
-                                            <th>APPLICANT CATEGORY</th>
-                                            <th>BUSINESS CATEGORY</th>
-                                            <th>ID NUMBER</th>
-                                            <th>PHONE</th>
+                                            <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                            <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                            <th class="onSmall-hide">ID NUMBER</th>
+                                            <th class="onSmall-hide">PHONE</th>
                                             <th>COMMODITY</th>
                                             <th>COST</th>
                                             <th>MARKS</th>
@@ -568,12 +570,12 @@ if ($_SESSION['role'] != 'Admin') {
                                         <tbody>
 
                                             <tr>
-                                                <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
+                                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
                                                 <td> <?php echo $rows['appName']; ?> </td>
-                                                <td> <?php echo $rows['appCatName']; ?> </td>
-                                                <td> <?php echo $rows['bCatName']; ?> </td>
-                                                <td> <?php echo $rows['idNbr']; ?> </td>
-                                                <td> <?php echo $rows['phone']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['appCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['idNbr']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['phone']; ?> </td>
                                                 <td> <?php echo $rows['crop1']; ?> </td>
                                                 <td> <?php echo number_format($rows['totalCost']); ?> </td>
                                                 <td> <?php
@@ -595,7 +597,7 @@ if ($_SESSION['role'] != 'Admin') {
                                         $sum_cost += $rows['totalCost'];
                                     }
                                         ?>
-                                        <tr class="text-center table-warning font-weight-bold text-info">
+                                        <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                             <td colspan="7">
                                                 <h6>TOTAL COST</h6>
                                             </td>
@@ -649,12 +651,12 @@ if ($_SESSION['role'] != 'Admin') {
                                 <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
-                                            <th>FORM CODE</th>
+                                            <th class="onSmall-hide">FORM CODE</th>
                                             <th>NAME</th>
-                                            <th>APPLICANT CATEGORY</th>
-                                            <th>BUSINESS CATEGORY</th>
-                                            <th>ID NUMBER</th>
-                                            <th>PHONE</th>
+                                            <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                            <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                            <th class="onSmall-hide">ID NUMBER</th>
+                                            <th class="onSmall-hide">PHONE</th>
                                             <th>COMMODITY</th>
                                             <th>COST</th>
                                             <th>MARKS</th>
@@ -671,10 +673,10 @@ if ($_SESSION['role'] != 'Admin') {
                                         <tbody>
 
                                             <tr>
-                                                <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
+                                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
                                                 <td> <?php echo $rows['appName']; ?> </td>
-                                                <td> <?php echo $rows['appCatName']; ?> </td>
-                                                <td> <?php echo $rows['bCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['appCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
                                                 <td> <?php echo $rows['idNbr']; ?> </td>
                                                 <td> <?php echo $rows['phone']; ?> </td>
                                                 <td> <?php echo $rows['crop1']; ?> </td>
@@ -697,7 +699,7 @@ if ($_SESSION['role'] != 'Admin') {
                                         $sum_cost += $rows['totalCost'];
                                     }
                                         ?>
-                                        <tr class="text-center table-warning font-weight-bold text-info">
+                                        <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                             <td colspan="7">
                                                 <h6>TOTAL COST</h6>
                                             </td>
@@ -752,12 +754,12 @@ if ($_SESSION['role'] != 'Admin') {
                                 <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
-                                            <th>FORM CODE</th>
+                                            <th class="onSmall-hide">FORM CODE</th>
                                             <th>NAME</th>
-                                            <th>APPLICANT CATEGORY</th>
-                                            <th>BUSINESS CATEGORY</th>
-                                            <th>ID NUMBER</th>
-                                            <th>PHONE</th>
+                                            <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                                            <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                            <th class="onSmall-hide">ID NUMBER</th>
+                                            <th class="onSmall-hide">PHONE</th>
                                             <th>COMMODITY</th>
                                             <th>COST</th>
                                             <th>MARKS</th>
@@ -774,12 +776,12 @@ if ($_SESSION['role'] != 'Admin') {
                                         <tbody>
 
                                             <tr>
-                                                <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
+                                                <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $rows['formCode']; ?> </strong></td>
                                                 <td> <?php echo $rows['appName']; ?> </td>
-                                                <td> <?php echo $rows['appCatName']; ?> </td>
-                                                <td> <?php echo $rows['bCatName']; ?> </td>
-                                                <td> <?php echo $rows['idNbr']; ?> </td>
-                                                <td> <?php echo $rows['phone']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['appCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['idNbr']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['phone']; ?> </td>
                                                 <td> <?php echo $rows['crop1']; ?> </td>
                                                 <td> <?php echo number_format($rows['totalCost']); ?> </td>
                                                 <td> <?php
@@ -801,7 +803,7 @@ if ($_SESSION['role'] != 'Admin') {
                                         $sum_cost += $rows['totalCost'];
                                     }
                                         ?>
-                                        <tr class="text-center table-warning font-weight-bold text-info">
+                                        <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                             <td colspan="7">
                                                 <h6>TOTAL COST</h6>
                                             </td>

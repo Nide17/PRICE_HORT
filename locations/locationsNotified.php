@@ -38,86 +38,86 @@ if ($_SESSION['role'] != 'Admin') {
     <div class="container">
 
         <!-- jumbotron -->
-        <div class="jumbotron bg-info row" style="padding: 40px">
+        <div class="jumbotron bg-info" style="padding: 40px">
+            <div class="row jumbotron-row">
+                <div class="col-12 col-sm-12 col-lg-8">
+                    <h2>Welcome <br>
+                        <?php
+                        if (isset($_SESSION['first'])) {
+                            echo $_SESSION['first'];
+                        }
+                        ?></h2>
+                </div>
+                <div class="col-6 col-sm-4 col-lg-2">
 
-            <div class="col-sm-6">
-                <h2>Welcome <br>
-                    <?php
-                    if (isset($_SESSION['first'])) {
-                        echo $_SESSION['first'];
-                    }
-                    ?></h2>
-            </div>
-            <div class="col-sm-2">
-            </div>
-            <div class="col-sm-2">
+                    <div class="card" style="width:100%; background-color:lightgray">
+                        <a href="../profileUpdate.php?edit=<?php echo $_SESSION['useridentity'] ?>" data-toggle="tooltip" title="Update your picture!"> <img class="card-img-top rounded" width="104" height="106" <?php
 
-                <div class="card" style="width:100%; background-color:lightgray">
-                    <a href="../profileUpdate.php?edit=<?php echo $_SESSION['useridentity'] ?>" data-toggle="tooltip" title="Update your picture!"> <img class="card-img-top rounded" width="104" height="106" <?php
+                                                                                                                                                                                                                    $servername = "localhost";
+                                                                                                                                                                                                                    $username = "root";
+                                                                                                                                                                                                                    $password = "";
+                                                                                                                                                                                                                    $dbname = "hort_db";
 
-                                                                                                                                                                                                                $servername = "localhost";
-                                                                                                                                                                                                                $username = "root";
-                                                                                                                                                                                                                $password = "";
-                                                                                                                                                                                                                $dbname = "hort_db";
+                                                                                                                                                                                                                    $imgIDUser = $_SESSION['useridentity'];
 
-                                                                                                                                                                                                                $imgIDUser = $_SESSION['useridentity'];
+                                                                                                                                                                                                                    $imgDBQuery = "SELECT * FROM tblUser WHERE u_id = '$imgIDUser' ";
 
-                                                                                                                                                                                                                $imgDBQuery = "SELECT * FROM tblUser WHERE u_id = '$imgIDUser' ";
+                                                                                                                                                                                                                    $resultImg = $conn->query($imgDBQuery);
 
-                                                                                                                                                                                                                $resultImg = $conn->query($imgDBQuery);
+                                                                                                                                                                                                                    //COUNTING THE NUMBER OF ROWS RETURNED
+                                                                                                                                                                                                                    if ($resultImg->num_rows == 1) {
+                                                                                                                                                                                                                        //output row
+                                                                                                                                                                                                                        while ($rowImg = $resultImg->fetch_assoc()) {
 
-                                                                                                                                                                                                                //COUNTING THE NUMBER OF ROWS RETURNED
-                                                                                                                                                                                                                if ($resultImg->num_rows == 1) {
-                                                                                                                                                                                                                    //output row
-                                                                                                                                                                                                                    while ($rowImg = $resultImg->fetch_assoc()) {
-
-                                                                                                                                                                                                                        if (isset($rowImg['profile_image'])) {
-                                                                                                                                                                                                                            $img = $rowImg['profile_image'];
-                                                                                                                                                                                                                            echo 'src="data:image/jpeg;base64,' . base64_encode($img) . '"';
+                                                                                                                                                                                                                            if (isset($rowImg['profile_image'])) {
+                                                                                                                                                                                                                                $img = $rowImg['profile_image'];
+                                                                                                                                                                                                                                echo 'src="data:image/jpeg;base64,' . base64_encode($img) . '"';
+                                                                                                                                                                                                                            }
                                                                                                                                                                                                                         }
                                                                                                                                                                                                                     }
-                                                                                                                                                                                                                }
-                                                                                                                                                                                                                ?>></a>
+                                                                                                                                                                                                                    ?>></a>
 
-                    <script>
-                        $(document).ready(function() {
-                            $('[data-toggle="tooltip"]').tooltip();
-                        });
-                    </script>
+                        <script>
+                            $(document).ready(function() {
+                                $('[data-toggle="tooltip"]').tooltip();
+                            });
+                        </script>
 
-                    <h6 style="color:blue; text-align:center"><small class="card-title">(<?php
-                                                                                            if (isset($_SESSION['role'])) {
-                                                                                                echo $_SESSION['role'];
-                                                                                            } ?>)</small></h6>
+                        <h6 style="color:blue; text-align:center"><small class="card-title">(<?php
+                                                                                                if (isset($_SESSION['role'])) {
+                                                                                                    echo $_SESSION['role'];
+                                                                                                } ?>)</small></h6>
+                    </div>
+
                 </div>
 
-            </div>
-
-            <div class="col-sm-2">
-                <a href="../logout.php"><button style="float:right;" type="button" class="btn btn-outline-danger">Logout</button></a>
+                <div class="col-3 col-sm-2 col-lg-2 logout">
+                    <a href="../logout.php"><button style="float:right;" type="button" class="btn btn-outline-danger">Logout</button></a>
+                </div>
             </div>
         </div>
         <!-- end jumbotron -->
-        <?php if ($_SESSION['role'] == 'Admin') {  ?>
-            <a href="../admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
-            <a href="../homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-            <a href="../newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
-            <a href="../notified.php"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
-            <br>
-        <?php } elseif ($_SESSION['role'] == 'Manager') { ?>
-            <a href="../admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
-            <a href="../homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-            <a href="../newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
-            <a href="../notified.php"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
-            <br>
-        <?php } else { ?>
-            <a href="../notified.php"><button id="backHome" type="button" class="btn-success btn-sm">Granted</button></a>
-            <a href="../all.php"><button id="" type="button" class="btn-success btn-sm">All Applicants</button></a>
-            <a href="../homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
-        <?php } ?>
+        <div class="col-12 col-sm-6 top-buttons">
+            <?php if ($_SESSION['role'] == 'Admin') {  ?>
+                <a href="../admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                <a href="../homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+                <a href="../newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
+                <a href="../notified.php"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
+                <br>
+            <?php } elseif ($_SESSION['role'] == 'Manager') { ?>
+                <a href="../admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                <a href="../homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+                <a href="../newpost.php"><button id="" type="button" class="btn-success btn-sm">Add Post</button></a>
+                <a href="../notified.php"><button id="" type="button" class="btn-success btn-sm">Granted</button></a>
+                <br>
+            <?php } else { ?>
+                <a href="../notified.php"><button id="backHome" type="button" class="btn-success btn-sm">Granted</button></a>
+                <a href="../all.php"><button id="" type="button" class="btn-success btn-sm">All Applicants</button></a>
+                <a href="../homepage.php"><button id="" type="button" class="btn-success btn-sm">Homepage</button></a>
+            <?php } ?>
+        </div>
 
-        <br>
-        <h3 style="text-align: center; color:#1B4F72;">VIEW NOTIFIED BY LOCATION</h3>
+        <h3 class="titles" style="color:#1B4F72;">VIEW NOTIFIED BY LOCATION</h3>
 
         <div class="row">
 
@@ -239,7 +239,7 @@ if ($_SESSION['role'] != 'Admin') {
                         $loca = $conn->query("SELECT pname FROM provinces WHERE pid='$pro'");
                         while ($rows = $loca->fetch_assoc()) {
 
-                            echo "<br/> <br/> <b style=" . "color:#1B4F72;" . "margin-left:280px;" . "> You have selected to display info from: </b>" . $rows["pname"];
+                            echo "<br/> <br/> <b style=" . "margin-left:35%;". "> You have selected to display info from: " .$rows["pname"] ."</b>";
                             $prov = $rows["pname"];
                         }
                     }
@@ -249,7 +249,7 @@ if ($_SESSION['role'] != 'Admin') {
                         $loca = $conn->query("SELECT dname FROM districts WHERE did='$dis'");
                         while ($rows = $loca->fetch_assoc()) {
 
-                            echo ", " . $rows["dname"];
+                            echo ", <b>" . $rows["dname"] ."</b>";
                             $dist = $rows["dname"];
                         }
                     }
@@ -259,7 +259,7 @@ if ($_SESSION['role'] != 'Admin') {
                         $loca = $conn->query("SELECT sname FROM sectors WHERE sid='$sec'");
                         while ($rows = $loca->fetch_assoc()) {
 
-                            echo ", " . $rows["sname"];
+                            echo ", <b>" . $rows["sname"] ."</b>";
                             $secs = $rows["sname"];
                         }
                     }
@@ -285,16 +285,16 @@ if ($_SESSION['role'] != 'Admin') {
                                 <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
-                                            <th>NO</th>
+                                            <th class="onSmall-hide">NO</th>
                                             <th>NAME</th>
-                                            <th>BUSINESS CATEGORY</th>
-                                            <th>COMPONENT</th>
+                                            <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                            <th class="onSmall-hide">COMPONENT</th>
                                             <th>DISTRICT</th>
-                                            <th>TELEPHONE</th>
+                                            <th class="onSmall-hide">TELEPHONE</th>
                                             <th>SEX</th>
-                                            <th>YOUTH</th>
+                                            <th class="onSmall-hide">YOUTH</th>
                                             <th>BUSINESS COMMODITY</th>
-                                            <th>LOAN AMOUNT </th>
+                                            <th class="onSmall-hide">LOAN AMOUNT </th>
                                             <th>GRANT</th>
                                             <th>FINANCIAL INSTITUTION</th>
                                         </tr>
@@ -307,16 +307,16 @@ if ($_SESSION['role'] != 'Admin') {
                                     while ($rows = $fetchResult->fetch_assoc()) { ?>
                                         <tbody>
                                             <tr>
-                                                <td> <?php echo $i; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $i; ?> </td>
                                                 <td> <strong><?php echo $rows['Nname']; ?> </strong></td>
-                                                <td> <?php echo $rows['appCatName']; ?> </td>
-                                                <td> <?php echo $rows['bCatName']; ?> </td>
+                                                <td class="onSmall-hide" d> <?php echo $rows['appCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
                                                 <td> <?php echo $rows['district']; ?> </td>
-                                                <td> <?php echo $rows['phone']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['phone']; ?> </td>
                                                 <td> <?php echo $rows['sex']; ?> </td>
-                                                <td> <?php echo $rows['youth']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['youth']; ?> </td>
                                                 <td> <?php echo $rows['commodity']; ?> </td>
-                                                <td> <?php echo number_format($rows['loan']); ?> </td>
+                                                <td class="onSmall-hide"> <?php echo number_format($rows['loan']); ?> </td>
                                                 <td> <?php echo number_format($rows['granted']); ?> </td>
                                                 <td> <?php echo $rows['pfi']; ?> </td>
                                             </tr>
@@ -325,7 +325,7 @@ if ($_SESSION['role'] != 'Admin') {
                                         $sum_cost += $rows['granted'];
                                     }
                                         ?>
-                                        <tr class="text-center table-warning font-weight-bold text-info">
+                                        <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                             <td colspan="10">
                                                 <h6>TOTAL GRANT</h6>
                                             </td>
@@ -381,16 +381,16 @@ if ($_SESSION['role'] != 'Admin') {
                                 <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
-                                            <th>NO</th>
+                                            <th class="onSmall-hide">NO</th>
                                             <th>NAME</th>
-                                            <th>BUSINESS CATEGORY</th>
-                                            <th>COMPONENT</th>
+                                            <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                            <th class="onSmall-hide">COMPONENT</th>
                                             <th>DISTRICT</th>
-                                            <th>TELEPHONE</th>
+                                            <th class="onSmall-hide">TELEPHONE</th>
                                             <th>SEX</th>
-                                            <th>YOUTH</th>
+                                            <th class="onSmall-hide">YOUTH</th>
                                             <th>BUSINESS COMMODITY</th>
-                                            <th>LOAN AMOUNT </th>
+                                            <th class="onSmall-hide">LOAN AMOUNT </th>
                                             <th>GRANT</th>
                                             <th>FINANCIAL INSTITUTION</th>
                                         </tr>
@@ -404,16 +404,16 @@ if ($_SESSION['role'] != 'Admin') {
 
                                         <tbody>
                                             <tr>
-                                                <td> <?php echo $i; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $i; ?> </td>
                                                 <td> <strong><?php echo $rows['Nname']; ?> </strong></td>
-                                                <td> <?php echo $rows['appCatName']; ?> </td>
-                                                <td> <?php echo $rows['bCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['appCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
                                                 <td> <?php echo $rows['district']; ?> </td>
-                                                <td> <?php echo $rows['phone']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['phone']; ?> </td>
                                                 <td> <?php echo $rows['sex']; ?> </td>
-                                                <td> <?php echo $rows['youth']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['youth']; ?> </td>
                                                 <td> <?php echo $rows['commodity']; ?> </td>
-                                                <td> <?php echo number_format($rows['loan']); ?> </td>
+                                                <td class="onSmall-hide"> <?php echo number_format($rows['loan']); ?> </td>
                                                 <td> <?php echo number_format($rows['granted']); ?> </td>
                                                 <td> <?php echo $rows['pfi']; ?> </td>
                                             </tr>
@@ -422,7 +422,7 @@ if ($_SESSION['role'] != 'Admin') {
                                         $sum_cost += $rows['granted'];
                                     }
                                         ?>
-                                        <tr class="text-center table-warning font-weight-bold text-info">
+                                        <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                             <td colspan="10">
                                                 <h6>TOTAL GRANT</h6>
                                             </td>
@@ -477,16 +477,16 @@ if ($_SESSION['role'] != 'Admin') {
                                 <table class="table table-sm w-auto" id="locationTable">
                                     <thead class="thead-dark">
                                         <tr style="font-style:inherit">
-                                            <th>NO</th>
+                                            <th class="onSmall-hide">NO</th>
                                             <th>NAME</th>
-                                            <th>BUSINESS CATEGORY</th>
-                                            <th>COMPONENT</th>
+                                            <th class="onSmall-hide">BUSINESS CATEGORY</th>
+                                            <th class="onSmall-hide">COMPONENT</th>
                                             <th>DISTRICT</th>
-                                            <th>TELEPHONE</th>
+                                            <th class="onSmall-hide">TELEPHONE</th>
                                             <th>SEX</th>
-                                            <th>YOUTH</th>
+                                            <th class="onSmall-hide">YOUTH</th>
                                             <th>BUSINESS COMMODITY</th>
-                                            <th>LOAN AMOUNT </th>
+                                            <th class="onSmall-hide">LOAN AMOUNT </th>
                                             <th>GRANT</th>
                                             <th>FINANCIAL INSTITUTION</th>
                                         </tr>
@@ -500,16 +500,16 @@ if ($_SESSION['role'] != 'Admin') {
 
                                         <tbody>
                                             <tr>
-                                                <td> <?php echo $i; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $i; ?> </td>
                                                 <td> <strong><?php echo $rows['Nname']; ?> </strong></td>
-                                                <td> <?php echo $rows['appCatName']; ?> </td>
-                                                <td> <?php echo $rows['bCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['appCatName']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['bCatName']; ?> </td>
                                                 <td> <?php echo $rows['district']; ?> </td>
-                                                <td> <?php echo $rows['phone']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['phone']; ?> </td>
                                                 <td> <?php echo $rows['sex']; ?> </td>
-                                                <td> <?php echo $rows['youth']; ?> </td>
+                                                <td class="onSmall-hide"> <?php echo $rows['youth']; ?> </td>
                                                 <td> <?php echo $rows['commodity']; ?> </td>
-                                                <td> <?php echo number_format($rows['loan']); ?> </td>
+                                                <td class="onSmall-hide"> <?php echo number_format($rows['loan']); ?> </td>
                                                 <td> <?php echo number_format($rows['granted']); ?> </td>
                                                 <td> <?php echo $rows['pfi']; ?> </td>
                                             </tr>
@@ -518,7 +518,7 @@ if ($_SESSION['role'] != 'Admin') {
                                         $sum_cost += $rows['granted'];
                                     }
                                         ?>
-                                        <tr class="text-center table-warning font-weight-bold text-info">
+                                        <tr class="text-center table-warning font-weight-bold text-info onSmall-hide">
                                             <td colspan="10">
                                                 <h6>TOTAL GRANT</h6>
                                             </td>

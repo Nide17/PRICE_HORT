@@ -43,14 +43,18 @@ require_once('includes/head.php');
 
         <?php require_once('includes/jumbotron.php') ?>
 
-        <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
-        <a href="posts.php"><button id="backHome" type="button" class="btn-success btn-sm">See Posts</button></a>
+        <div class="row">
+            <div class="top-buttons">
+                <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+                <a href="posts.php"><button id="backHome" type="button" class="btn-success btn-sm">See Posts</button></a>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-sm-12">
                 <form method="POST" action="dbposts.php" id="">
 
-                    <h3 style="text-align: center;">HORTICULTURE DATABASE</h3><br>
+                    <h3 class="titles">HORTICULTURE DATABASE</h3><br>
 
                     <input type="hidden" name="postId" value="<?php echo $id; ?>">
 

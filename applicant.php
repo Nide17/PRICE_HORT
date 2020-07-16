@@ -54,13 +54,13 @@ require_once('includes/head.php')
         <?php require_once('includes/jumbotron.php') ?>
 
         <div class="row">
-            <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
+            <a href="admin.php"><button id="backHome" type="button" class="btn-success btn-sm" style="margin-left: 20px;">Back Home</button></a>
         </div>
 
         <form method="POST" action="dbconnect.php" id="editNewForm">
 
             <legend style="color: #4525ef;">
-                <h4 style="text-align:center">REGISTER APPLICANT<br /><br /></h4>
+                <h4 style="text-align:center"><br />REGISTER APPLICANT<br /></h4>
             </legend>
             <input type="hidden" name="appId" value="<?php echo $id; ?>">
 
@@ -283,7 +283,7 @@ require_once('includes/head.php')
                 </div>
             </div>
 
-            <div class="input-group">
+            <div class="input-group" style="margin-bottom: 20px;">
                 <?php if ($edit_state == false) :  ?>
                     <button type="submit" name="save" id="save-btn" class="btn-success">Save</button>
 
