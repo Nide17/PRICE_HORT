@@ -25,13 +25,13 @@ $result = $conn->query($sqlRetrieve);
         <table class="table datatable table-sm w-auto">
             <thead class="thead-dark">
                 <tr>
-                    <th>FORM CODE</th>
+                    <th class="onSmall-hide">FORM CODE</th>
                     <th>NAME</th>
-                    <th>APPLICANT CATEGORY</th>
-                    <th>BUSINESS CATEGORY</th>
+                    <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                    <th class="onSmall-hide">BUSINESS CATEGORY</th>
                     <th>DISTRICT</th>
-                    <th>ID NUMBER</th>
-                    <th>PHONE</th>
+                    <th class="onSmall-hide">ID NUMBER</th>
+                    <th class="onSmall-hide">PHONE</th>
                     <th>COMMODITY</th>
                     <th>COST</th>
                     <th>MARKS</th>
@@ -48,13 +48,13 @@ $result = $conn->query($sqlRetrieve);
                     while ($row = $result->fetch_assoc()) { ?>
 
                         <tr>
-                            <td> <strong style="color:rgb(192, 233, 201);"> <?php echo $row['formCode']; ?> </strong></td>
+                            <td class="onSmall-hide"> <strong style="color:rgb(192, 233, 201);"> <?php echo $row['formCode']; ?> </strong></td>
                             <td> <?php echo $row['appName']; ?> </td>
-                            <td> <?php echo $row['appCatName']; ?> </td>
-                            <td> <?php echo $row['bCatName']; ?> </td>
+                            <td class="onSmall-hide"> <?php echo $row['appCatName']; ?> </td>
+                            <td class="onSmall-hide"> <?php echo $row['bCatName']; ?> </td>
                             <td> <?php echo $row['bDistrict']; ?> </td>
-                            <td> <?php echo $row['idNbr']; ?> </td>
-                            <td> <?php echo $row['phone']; ?> </td>
+                            <td class="onSmall-hide"> <?php echo $row['idNbr']; ?> </td>
+                            <td class="onSmall-hide"> <?php echo $row['phone']; ?> </td>
                             <td> <?php echo $row['crop1']; ?> </td>
                             <td> <?php echo number_format($row['totalCost']); ?> </td>
                             <td> <?php
@@ -63,7 +63,13 @@ $result = $conn->query($sqlRetrieve);
                                     } else {
                                         echo '<b style="color:blue;">' . $row['marks'] . '</b>';
                                     } ?> </td>
-                            <td> <strong><?php echo $row['spName']; ?> </strong></td>
+                            <td> <strong><?php if ($row['marks'] < 55) {
+                                echo "";
+                            } else {
+                                echo $row['spName']; 
+                            }
+                            ?> 
+                            </strong></td> 
                             <td>
                                 <a class="edit_btn" href="applicant.php?edit=<?php echo $row['appNo'];  ?>">Edit </a>
                             </td>
@@ -81,13 +87,13 @@ $result = $conn->query($sqlRetrieve);
             </tbody>
             <tfoot class="thead-dark">
                 <tr>
-                    <th>FORM CODE</th>
+                    <th class="onSmall-hide">FORM CODE</th>
                     <th>NAME</th>
-                    <th>APPLICANT CATEGORY</th>
-                    <th>BUSINESS CATEGORY</th>
+                    <th class="onSmall-hide">APPLICANT CATEGORY</th>
+                    <th class="onSmall-hide">BUSINESS CATEGORY</th>
                     <th>DISTRICT</th>
-                    <th>ID NUMBER</th>
-                    <th>PHONE</th>
+                    <th class="onSmall-hide">ID NUMBER</th>
+                    <th class="onSmall-hide">PHONE</th>
                     <th>COMMODITY</th>
                     <th>COST</th>
                     <th>MARKS</th>

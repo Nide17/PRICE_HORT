@@ -49,7 +49,7 @@
 
             </div>
 
-            <div class="col-3 col-sm-2 col-lg-2 logout">
+            <div class="col-3 col-sm-3 col-lg-2 logout">
                 <a href="logout.php"><button style="float:right;" type="button" class="btn btn-outline-danger">Logout</button></a>
             </div>
         </div>

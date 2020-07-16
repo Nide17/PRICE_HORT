@@ -30,7 +30,7 @@ require_once('includes/head.php');
             <?php
             include('includes/searchButton.php')
             ?>
-            <div class="col-sm-6 top-buttons">
+            <div class="col-12 col-sm-12 col-lg-6 top-buttons">
                 <?php if ($_SESSION['role'] == 'Admin') {  ?>
                     <a href="admin.php"><button style="float:right; margin-right:5px;" id="backHome" type="button" class="btn-success btn-sm">Back Home</button></a>
                     <a href="homepage.php"><button style="float:right; margin-right:5px;" id="" type="button" class="btn-success btn-sm">Homepage</button></a>
